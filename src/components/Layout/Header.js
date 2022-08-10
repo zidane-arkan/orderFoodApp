@@ -1,13 +1,19 @@
 import React from 'react';
 import headerClass from './Header.module.css';
+import mealsImg from '../../assets/meals.jpg';
+import HeaderCartButton from './HeaderCartButon';
 
-function Header() {
+function Header(props) {
     return (
-        <div>
+        <React.Fragment>
             <navbar className={headerClass.header}>
-
+                <h2>ReactMeals</h2>
+                <HeaderCartButton />
             </navbar>
-        </div>
+            <div className={headerClass[`main-image`]}>
+                <img src={mealsImg} alt="Meals Img" />
+            </div>
+        </React.Fragment>
     );
 }
 

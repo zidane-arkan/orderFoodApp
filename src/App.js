@@ -1,9 +1,16 @@
-import Main from './components/Layout/Main';
+import React from 'react';
+// import Main from './components/Layout/Main';
+import Header from './components/Layout/Header';
+import Meals from './components/Meals/Meals';
+
 function App() {
   return (
-    <div>
-      <Main></Main>
-    </div>
+    <React.Fragment>
+      <Header />
+      <main>
+        <Meals />
+      </main>
+    </React.Fragment>
   );
 }
 
