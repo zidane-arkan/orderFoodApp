@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import AvailableMealsClass from './AvailableMeals.module.css';
+import Card from '../UI/Card';
+import MealItem from './MealItem/MealItem';
 
 const DUMMY_MEALS = [
     {
@@ -30,14 +32,21 @@ const DUMMY_MEALS = [
 function AvailableMeals(props) {
     let mealsList = DUMMY_MEALS.map((meal) => {
         return (
-            <li>{meal.name}</li>
+            <MealItem
+                key={`ABC_${meal.id}`}
+                name={meal.name}
+                description={meal.description}
+                price={meal.price}
+            />
         );
     });
     return (
         <section className={AvailableMealsClass.meals}>
-            <ul>
-                {mealsList}
-            </ul>
+            <Card>
+                <ul>
+                    {mealsList}
+                </ul>
+           </Card>
         </section>
     );
 }
