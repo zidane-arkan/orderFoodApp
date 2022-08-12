@@ -1,10 +1,12 @@
 import React from 'react';
 import CartModalClass from './CartModal.module.css';
 
-function CartOverlay() {
+function CartOverlay(props) {
     return (
         <section className={CartModalClass.modal}>
-            <div></div>
+            <div className={CartModalClass.content}>
+                {props.children}
+            </div>
         </section>
     );
 }
