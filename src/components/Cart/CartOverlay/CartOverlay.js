@@ -7,7 +7,7 @@ function CartOverlay(props) {
     const portalElement = document.getElementById('overlay');
     return (
         <React.Fragment>
-            {ReactDOM.createPortal(<Backdrop />, portalElement)};
+            {ReactDOM.createPortal(<Backdrop onClick={props.onClick} />, portalElement)};
             {ReactDOM.createPortal(<CartModal>{props.children}</CartModal>, portalElement)};
         </React.Fragment>
     );

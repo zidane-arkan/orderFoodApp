@@ -30,6 +30,14 @@ const DUMMY_MEALS = [
     },
 ];
 function AvailableMeals(props) {
+    const [mealsItem, setMealsItem] = useState([{}]);
+    const mealsItemHandler = (newMeal) => {
+        setMealsItem((prevMeal) => {
+            console.log(mealsItem);
+            return [newMeal, ...prevMeal];
+        }); 
+    };
+
     let mealsList = DUMMY_MEALS.map((meal) => {
         return (
             <MealItem
@@ -38,6 +46,7 @@ function AvailableMeals(props) {
                 name={meal.name}
                 description={meal.description}
                 price={meal.price}
+                mealsItemHandler={mealsItemHandler}
             />
         );
     });
@@ -47,7 +56,7 @@ function AvailableMeals(props) {
                 <ul>
                     {mealsList}
                 </ul>
-           </Card>
+            </Card>
         </section>
     );
 }

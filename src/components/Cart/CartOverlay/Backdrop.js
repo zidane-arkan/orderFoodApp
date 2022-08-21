@@ -1,9 +1,9 @@
 import React from 'react'
 import BackdropClass from './Backdrop.module.css';
 
-function Backdrop() {
+function Backdrop(props) {
   return (
-    <section className={BackdropClass.backdrop}/>
+    <section className={BackdropClass.backdrop} onClick={props.onClick} />
   )
 }
 

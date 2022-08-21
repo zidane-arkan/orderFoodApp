@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import Main from './components/Layout/Main';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
+import Cart from './components/Cart/Cart';
+import CartProvider from './store/CartProvider';
 
 function App() {
+  const [isCartClick, setIsCartClick] = useState(false);
+  const changeCartHandler = (statusCart) => { 
+    setIsCartClick(statusCart);
+  };
   return (
-    <React.Fragment>
-      <Header />
+    <CartProvider>
+      {isCartClick ? <Cart changeCartHandler={changeCartHandler} /> : ""}
+      <Header changeCartHandler={changeCartHandler} />
       <main>
         <Meals />
       </main>
-    </React.Fragment>
+    </CartProvider>
   );
 }
 
