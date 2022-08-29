@@ -6,13 +6,19 @@ import CartContext from '../../store/cart-context';
 
 function Cart(props) {
     const cartCtx = useContext(CartContext);
-    console.log(cartCtx);
     // const cartItems = [{
     //     id: 'm1',
     //     name: 'Sushi',
     //     amount: 2,
     //     price: 22.99,
     // }];
+    const cartAddItemHandler = (item) => {
+        console.log(item);
+    };
+    const cartRemoveItemHandler = (id) => {
+        console.log(id);
+    };
+
     const cartLists = <ul className={CartClass['cart-items']}>
         {cartCtx.items.map((item) => {
             // return <li>1</li>;
@@ -23,6 +29,8 @@ function Cart(props) {
                     name={item.name}
                     price={item.price}
                     amount={item.amount}
+                    onAdd={cartAddItemHandler.bind(null,item)}
+                    onRemove={cartRemoveItemHandler.bind(null, item.id)}
                 />
             );
         })}

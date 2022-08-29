@@ -3,7 +3,7 @@ import CarttItemClass from './CartItem.module.css';
 
 function CartItem(props) {
   const price = `$${props.price.toFixed(2)}`;
-  console.log(props.amount);
+  // console.log(props.amount);
   return (
     <li className={CarttItemClass['cart-item']}>
       <div>
