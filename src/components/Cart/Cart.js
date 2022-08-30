@@ -16,7 +16,7 @@ function Cart(props) {
         cartCtx.increaseItemAmount(item);
     };
     const cartRemoveItemHandler = (id) => {
-        console.log(id);
+        cartCtx.removeItem(id);
     };
 
     const cartLists = <ul className={CartClass['cart-items']}>
