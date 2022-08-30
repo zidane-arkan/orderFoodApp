@@ -13,7 +13,7 @@ function Cart(props) {
     //     price: 22.99,
     // }];
     const cartAddItemHandler = (item) => {
-        console.log(item);
+        cartCtx.increaseItemAmount(item);
     };
     const cartRemoveItemHandler = (id) => {
         console.log(id);
