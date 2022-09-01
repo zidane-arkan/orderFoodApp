@@ -31,7 +31,7 @@ const cartReducer = (state, action) => {
         };
     }
     if (action.type === 'INCREASE_ITEM_AMOUNT') {
-        const updatedTotalAmount = state.totalAmount + (action.item.price * action.item.amount);
+        const updatedTotalAmount = state.totalAmount + action.item.price;
         const existItemIndex = state.items.findIndex(item => action.item.id === item.id);
 
         // console.log([...state.items]);
@@ -54,25 +54,25 @@ const cartReducer = (state, action) => {
     if (action.type === 'REMOVE_CART_ITEM') {
         const existingItemIndex = state.items.findIndex(item => item.id === action.id);
         const existingItem = state.items[existingItemIndex];
-        
+
         const updatedTotalAmount = state.totalAmount - existingItem.price;
-        
+
         let updatedItems;
-        if (existingItem.amount > 1) {
+        if (existingItem.amount === 1) {
+            updatedItems = state.items.filter(item=>item.id !== action.id);
+        } else {
             let updateItem = {
                 ...existingItem,
                 amount: Number(existingItem.amount) - 1,
             };
             updatedItems = [...state.items];
-            console.log(updateItem);
+            // console.log(updateItem);
             updatedItems[existingItemIndex] = updateItem;
-        } else if (existingItem.amount === 1) { 
-            updatedItems = state.items.
         }
         return {
-            items: updatedItems, 
+            items: updatedItems,
             totalAmount: updatedTotalAmount
-        }
+        };
         // console.log(action.id);
     }
     return defaultCartState;
@@ -81,8 +81,8 @@ const cartReducer = (state, action) => {
 function CartProvider(props) {
     const [cartState, cartDispatch] = useReducer(cartReducer, defaultCartState);
 
-    const increaseItemAmount = (item) => { 
-        cartDispatch({type: 'INCREASE_ITEM_AMOUNT', item: item});
+    const increaseItemAmount = (item) => {
+        cartDispatch({ type: 'INCREASE_ITEM_AMOUNT', item: item });
     };
     const addItemToCart = (item) => {
         cartDispatch({ type: 'ADD_CART_ITEM', item: item });
