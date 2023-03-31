@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer,useMemo } from 'react';
 import CartContext from './cart-context';
 
 const defaultCartState = {
@@ -59,7 +59,7 @@ const cartReducer = (state, action) => {
 
         let updatedItems;
         if (existingItem.amount === 1) {
-            updatedItems = state.items.filter(item=>item.id !== action.id);
+            updatedItems = state.items.filter(item => item.id !== action.id);
         } else {
             let updateItem = {
                 ...existingItem,
@@ -78,7 +78,7 @@ const cartReducer = (state, action) => {
     return defaultCartState;
 };
 
-function CartProvider(props) {
+const CartProvider = (props) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, defaultCartState);
 
     const increaseItemAmount = (item) => {
@@ -103,6 +103,6 @@ function CartProvider(props) {
             {props.children}
         </CartContext.Provider>
     );
-}
+};
 
 export default CartProvider;
