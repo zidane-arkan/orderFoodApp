@@ -34,8 +34,11 @@ const DUMMY_MEALS =
 
 const AvailableMeals = (props) => {
     const [meals, setMeals] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     const fetchData = async () => {
         try {
+            setIsLoading(true);
             const response = await fetch('https://mymeals-http-default-rtdb.asia-southeast1.firebasedatabase.app/mymeals.json');
             const mealsData = await response.json();
             if (!response.ok) {
@@ -55,6 +58,7 @@ const AvailableMeals = (props) => {
         } catch (error) {
             console.log(error.message);
         }
+        setIsLoading(false);
     };
     useEffect(() => { fetchData(); }, []);
 
@@ -81,6 +85,7 @@ const AvailableMeals = (props) => {
     return (
         <section className={AvailableMealsClass.meals}>
             <Card>
+                {isLoading ? <p>Data Is Loading</p> : null}
                 <ul>
                     {mealsList}
                 </ul>
